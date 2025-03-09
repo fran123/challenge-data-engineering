@@ -2,6 +2,6 @@
 
 Endpoints to uploads files
 
-* curl -X POST -F "file=@<path-file>" <ip>:<port>/departments/historical/
-* curl -X POST -F "file=@<path-file>" <ip>:<port>/jobs/historical/
-* curl -X POST -F "file=@<path-file>" <ip>:<port>/employees/historical/
+* curl -X POST -F "file=@{path-file}" {ip}:{port}/departments/historical/
+* curl -X POST -F "file=@{path-file}" {ip}:{port}/jobs/historical/
+* curl -X POST -F "file=@{path-file}" {ip}:{port}/employees/historical/
