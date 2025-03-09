@@ -1,10 +1,10 @@
 
 import datetime
-from fastapi import Depends, FastAPI, HTTPException, Query
 from sqlmodel import Field, Session, SQLModel, create_engine, Relationship
 from sqlalchemy import URL
 
-class Departament(SQLModel,table=True):
+
+class Department(SQLModel,table=True):
     id: int = Field(primary_key=True)
     department: str = Field(nullable=False)
 
@@ -14,15 +14,15 @@ class Job(SQLModel,table=True):
 
 class Employee(SQLModel,table=True):
     id: int = Field(primary_key=True)
-    name: str = Field(nullable=False)
-    hire_datetime: datetime.datetime = Field(nullable=False)
-    departament: Departament = Relationship()
-    job: Job = Relationship()
+    name: str = Field(nullable=True)
+    hire_datetime: datetime.datetime = Field(nullable=True)
+    department_id: int = Field(nullable=True,foreign_key="department.id")
+    job_id: int = Field(nullable=True,foreign_key="job.id")
 
 url_object = URL.create(
     "postgresql",
     username="postgres",
-    password="admin",  # plain (unescaped) text
+    password="admin",
     host="localhost",
     database="challenge",
 )
@@ -36,3 +36,4 @@ def create_tables():
 def get_session():
     with Session(engine) as session:
         yield session
+
