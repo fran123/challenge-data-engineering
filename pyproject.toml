@@ -8,11 +8,16 @@ authors = [
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
+    "fastapi (>=0.115.11,<0.116.0)",
+    "uvicorn[standard] (>=0.34.0,<0.35.0)",
+    "python-multipart (>=0.0.20,<0.0.21)"
 ]
 
-[tool.poetry]
-packages = [{include = "challenge_data_engineering", from = "src"}]
+[tool.poetry.scripts]
+start = "app.main:start"
 
+[tool.poetry]
+packages = [{include = "app"}]
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
