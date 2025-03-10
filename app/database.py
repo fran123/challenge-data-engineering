@@ -32,7 +32,6 @@ engine = create_engine(url_object)
 def create_tables():
     SQLModel.metadata.create_all(engine)
 
-
 def get_session():
     with Session(engine) as session:
         yield session
