@@ -2,7 +2,7 @@
 import datetime
 from sqlmodel import Field, Session, SQLModel, create_engine, Relationship
 from sqlalchemy import URL
-
+from app.config import settings
 
 class Department(SQLModel,table=True):
     id: int = Field(primary_key=True)
@@ -20,11 +20,12 @@ class Employee(SQLModel,table=True):
     job_id: int = Field(nullable=True,foreign_key="job.id")
 
 url_object = URL.create(
-    "postgresql",
-    username="postgres",
-    password="admin",
-    host="localhost",
-    database="challenge",
+    settings.db_driver,
+    username=settings.db_username,
+    password=settings.db_password,
+    host=settings.db_host,
+    port=settings.db_port,
+    database=settings.db_database,
 )
 
 engine = create_engine(url_object)
