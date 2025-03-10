@@ -1,6 +1,7 @@
-from pydantic_settings import BaseSettings,SettingsConfigDict
-
+from pydantic_settings import BaseSettings
+from pydantic import ConfigDict
 class Settings(BaseSettings):
+    
     db_driver:str = "postgresql"
     db_username:str
     db_password:str
@@ -8,9 +9,7 @@ class Settings(BaseSettings):
     db_port:str
     db_database:str
 
-    class Config:
-        env_file = ".env"
-
+    model_config = ConfigDict(env_file = ".env")
 
 settings = Settings()
 

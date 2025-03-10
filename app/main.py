@@ -2,6 +2,7 @@ import uvicorn
 from fastapi import FastAPI
 from .routers import departments, jobs, employees,metrics
 from .database import create_tables
+from contextlib import asynccontextmanager
 
 from sqlalchemy import text  ,create_engine
 app = FastAPI()
@@ -11,8 +12,8 @@ app.include_router(jobs.router)
 app.include_router(employees.router)
 app.include_router(metrics.router)
 
-@app.on_event("startup")
-def on_startup():
+@asynccontextmanager
+def lifespan():
     create_tables()
 
 @app.get("/")
