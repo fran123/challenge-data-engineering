@@ -11,6 +11,9 @@ Enpoints to calculate metrics
 * curl  {ip}:{port}/metrics/number_employees_hired_by_department_by_job_by_quarter?year=2021
 * curl  {ip}:{port}/metrics/departments_with_employees_hired_more_than_mean?year=2021
 
+Run tests 
+
+* poetry run test
 
 Deploy in local with docker
 
