@@ -13,7 +13,7 @@ Enpoints to calculate metrics
 
 Run tests 
 
-* poetry run test
+* poetry run pytest
 
 Deploy in local with docker
 

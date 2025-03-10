@@ -4,8 +4,6 @@ RUN pip install poetry==2.1.1
 
 WORKDIR /app
 
-ENV HOST 0.0.0.0
-
 COPY pyproject.toml poetry.lock .env ./
 COPY app ./app
 

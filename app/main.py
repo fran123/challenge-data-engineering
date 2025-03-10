@@ -5,16 +5,19 @@ from .database import create_tables
 from contextlib import asynccontextmanager
 
 from sqlalchemy import text  ,create_engine
-app = FastAPI()
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    create_tables()
+    yield
+
+app = FastAPI(lifespan=lifespan)
 
 app.include_router(departments.router)
 app.include_router(jobs.router)
 app.include_router(employees.router)
 app.include_router(metrics.router)
 
-@asynccontextmanager
-def lifespan():
-    create_tables()
 
 @app.get("/")
 async def root():
